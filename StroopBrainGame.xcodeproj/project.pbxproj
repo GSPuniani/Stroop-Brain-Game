@@ -11,6 +11,7 @@
 		783C70C025ECF14100459D35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C70BF25ECF14100459D35 /* ContentView.swift */; };
 		783C70C225ECF14200459D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 783C70C125ECF14200459D35 /* Assets.xcassets */; };
 		783C70C525ECF14200459D35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 783C70C425ECF14200459D35 /* Preview Assets.xcassets */; };
+		783C70CE25EDB54B00459D35 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C70CD25EDB54B00459D35 /* GameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		783C70C125ECF14200459D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		783C70C425ECF14200459D35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		783C70C625ECF14200459D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		783C70CD25EDB54B00459D35 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				783C70BD25ECF14100459D35 /* StroopBrainGameApp.swift */,
+				783C70CD25EDB54B00459D35 /* GameController.swift */,
 				783C70BF25ECF14100459D35 /* ContentView.swift */,
 				783C70C125ECF14200459D35 /* Assets.xcassets */,
 				783C70C625ECF14200459D35 /* Info.plist */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				783C70C025ECF14100459D35 /* ContentView.swift in Sources */,
+				783C70CE25EDB54B00459D35 /* GameController.swift in Sources */,
 				783C70BE25ECF14100459D35 /* StroopBrainGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
