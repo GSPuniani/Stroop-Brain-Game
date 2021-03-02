@@ -45,11 +45,11 @@ import Foundation
 // Game Controller
 class GameController: ObservableObject {
   // These variables are shared with the view
-    @Published var colorA: GameColor = .Blue    // Color of the top text and text label
-    @Published var colorB: GameColor = .Green   // Text label on the bottom label
-  @Published var colorC: GameColor = .Red     // Color of the bottom label
-  @Published var seconds: String = "00:00"     // TODO: update and format the time
-  @Published var score: Int = 500              // score
+  @Published var topColor: GameColor = .Blue    // Color of the top text and text label
+  @Published var bottomText: GameColor = .Green   // Text label on the bottom label
+  @Published var bottomColor: GameColor = .Red     // Color of the bottom label
+  @Published var seconds: String = "0.0"     // TODO: update and format the time
+  @Published var score: Int = 0              // score
   @Published var streak: Int = 0               // Streak count
   @Published var wins: Bool = false            // ??? I was going to do something with this...
   @Published var gameState: GameState = .start // Keeps track of the game state, needs work
@@ -106,9 +106,9 @@ class GameController: ObservableObject {
   
   // Check your answer - Pass it the label. Button labels should probably be an enum
   func checkAnswer(answer: String) {
-    // If colorA and colorC match your answer should be Yes!
+    // If topColor and bottomColor match your answer should be Yes!
     // If they don't your answer should be no
-    if (colorA == colorC && answer == "Yes") || (colorA != colorB && answer == "No") {
+    if (topColor == bottomColor && answer == "Yes") || (topColor != bottomColor && answer == "No") {
       // Got it right
       wins = true   // Still not using this...
       score += 100  // Add some points
@@ -129,9 +129,9 @@ class GameController: ObservableObject {
   // Set the color variables to star a game
   func chooseColors() {
     // Choose three colors at random
-    colorA = randomColor()
-    colorB = randomColor()
-    colorC = randomColor()
+    topColor = randomColor()
+    bottomText = randomColor()
+    bottomColor = randomColor()
     // The frequency of colors that match will 1 in 6. We might want this to me more like 1 / 2?
   }
   
@@ -173,7 +173,7 @@ class GameController: ObservableObject {
   // Format the time to display in the UI
   func formatTime() {
     // TODO: Need to pad with 0
-    seconds = "\(ms / 10):\(ms % 10)"
+    seconds = "\(ms / 10).\(ms % 10)"
   }
 }
 

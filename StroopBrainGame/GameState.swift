@@ -9,8 +9,8 @@ import Foundation
 
 // Keeps track of the states of the game
 enum GameState {
-  case ready
-  case playing
-  case over
-  case start
+    case ready
+    case start
+    case playing
+    case over
 }

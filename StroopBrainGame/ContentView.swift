@@ -15,7 +15,7 @@ struct ContentView: View {
     // Wrapper
     ZStack {
       // Background Color field
-      Color(hue: 0.6, saturation: 0.7, brightness: 0.7)
+      Color(hue: 0.62, saturation: 0.7, brightness: 0.9)
         .ignoresSafeArea()
       
       // Main Container
@@ -42,7 +42,7 @@ struct ContentView: View {
   
   
   // ----------------------------------------
-  // Display the top row with score and timer
+  // Display the top row with score, timer, and streak
   
   func scoreDisplay() -> AnyView {
     return AnyView(
@@ -52,7 +52,7 @@ struct ContentView: View {
           .frame(maxWidth: .infinity)
           .padding(5)
           .foregroundColor(.white)
-        // Time
+        // Timer
         Text("\(env.seconds)")
           .frame(maxWidth: .infinity)
           .padding(5)
@@ -76,16 +76,16 @@ struct ContentView: View {
     if env.gameState == .start {
       return AnyView(
         Text("Ready!")
-          .font(.system(size: 60, weight: .bold, design: .default))
-          .foregroundColor(Color(white: 0.18, opacity: 1.0))
+          .font(.system(size: 66, weight: .bold, design: .default))
+          .foregroundColor(Color(white: 0.78, opacity: 1.0))
       )
     }
     // Display the Color Labels
     return AnyView(VStack {
       // Top label colorA, color ColorA
-      TextDisplay(str: env.colorA.toString(), color: Color(env.colorA.toUIColor()))
+      TextDisplay(str: env.topColor.toString(), color: Color(env.topColor.toUIColor()))
       // Bottom label colorB, color * colorC *
-      TextDisplay(str: env.colorB.toString(), color: Color(env.colorC.toUIColor()))
+      TextDisplay(str: env.bottomText.toString(), color: Color(env.bottomColor.toUIColor()))
     })
   }
   
@@ -124,7 +124,7 @@ struct ContentView: View {
       })
     } else if env.gameState == .start {
       // Otherwise show the Start button
-      return AnyView(HStack(alignment: .bottom) {
+        return AnyView(HStack(alignment: .bottom, spacing: UIScreen.screenHeight/2) {
         ButtonDisplay(str: "Start")
       })
     }
@@ -146,9 +146,10 @@ struct ContentView: View {
           .foregroundColor(.white)
           .font(.system(size: 24))
       })
-      .frame(maxWidth: .infinity)
+      .frame(maxWidth: UIScreen.screenWidth / 2, maxHeight: UIScreen.screenWidth / 10)
       .padding(16)
-      .background(Color(white: 1.0, opacity: 0.5))
+      .background(Color.green)
+      .cornerRadius(12)
     )
   }
   
