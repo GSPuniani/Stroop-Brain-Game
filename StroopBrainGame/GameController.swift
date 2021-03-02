@@ -45,9 +45,9 @@ import Foundation
 // Game Controller
 class GameController: ObservableObject {
   // These variables are shared with the view
-  @Published var colorA: GameColor = .Blue     // Color of the top text and text label
-  @Published var colorB: GameColor = .Orange   // Text label on the bottom label
-  @Published var colorC: GameColor = .Red      // Color of the bottom label
+    @Published var colorA: GameColor = .Blue    // Color of the top text and text label
+    @Published var colorB: GameColor = .Green   // Text label on the bottom label
+  @Published var colorC: GameColor = .Red     // Color of the bottom label
   @Published var seconds: String = "00:00"     // TODO: update and format the time
   @Published var score: Int = 500              // score
   @Published var streak: Int = 0               // Streak count
