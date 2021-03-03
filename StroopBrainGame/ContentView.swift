@@ -55,10 +55,11 @@ struct ContentView: View {
           .padding(5)
           .foregroundColor(.white)
         // Timer
-        Text("\(env.seconds)")
+        Text("Time Left: \(env.seconds) sec")
           .frame(maxWidth: .infinity)
           .padding(5)
           .foregroundColor(.white)
+            .multilineTextAlignment(.center)
         // Steak
         Text("Streak: \(env.streak)")
           .frame(maxWidth: .infinity)

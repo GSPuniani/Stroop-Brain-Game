@@ -84,7 +84,7 @@ class GameController: ObservableObject {
     // Game Over - Maybe we don't need this, can set the state to .start and show
     // the start button again?
     case .over:
-      gameState = .playing
+      gameState = .start
     }
   }
   
@@ -100,7 +100,7 @@ class GameController: ObservableObject {
   func gameOver() {
     gameState = .over
     stopTimer()
-    startGameOverTimer()
+//    startGameOverTimer()
   }
   
   
@@ -122,8 +122,6 @@ class GameController: ObservableObject {
     // Select some new colors
     // TODO: go to the ready state, start a count down or delay before showing the next colors
     
-    gameOver()
-    
   }
   
   // Set the color variables to star a game
@@ -138,9 +136,9 @@ class GameController: ObservableObject {
   // Returns a random GameColor
   func randomColor() -> GameColor {
     // An array of all GameColors
-    let colors: [GameColor] = [.Red, .Yellow, .Orange, .Green, .Blue, .Purple]
+    let colors: [GameColor] = [.Red, .Yellow, .Orange, .Green, .Blue, .Purple, .Black, .Gray, .Brown, .Pink]
     // Return a color from the array
-    return colors[Int.random(in: 0..<6)]
+    return colors[Int.random(in: 0..<colors.count)]
   }
   
   // Starts a timer
@@ -153,11 +151,11 @@ class GameController: ObservableObject {
     // Might need to drop the timer and use a frame loop. Use delta time to calculate the time
   }
   
-  func startGameOverTimer() {
-    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
-      self.startGame()
-    })
-  }
+//  func startGameOverTimer() {
+//    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
+//      self.startGame()
+//    })
+//  }
   
   // Clears the time
   func stopTimer() {
@@ -166,13 +164,15 @@ class GameController: ObservableObject {
 
   // Handles updates to the timer
   func updateTimer() {
-    sec -= 1 // add a sec and format the time
+    sec -= 1 // Subtract a sec and format the time
+    if sec == 0 {
+        gameOver()
+    }
     formatTime()
   }
   
   // Format the time to display in the UI
   func formatTime() {
-    // TODO: Need to pad with 0
     seconds = "\(sec)"
   }
 }
