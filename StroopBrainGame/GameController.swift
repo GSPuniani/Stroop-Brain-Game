@@ -48,7 +48,7 @@ class GameController: ObservableObject {
   @Published var topColor: GameColor = .Blue    // Color of the top text and text label
   @Published var bottomText: GameColor = .Green   // Text label on the bottom label
   @Published var bottomColor: GameColor = .Red     // Color of the bottom label
-  @Published var seconds: String = "0.0"     // TODO: update and format the time
+  @Published var seconds: String = "60"     // TODO: update and format the time
   @Published var score: Int = 0              // score
   @Published var streak: Int = 0               // Streak count
   @Published var wins: Bool = false            // ??? I was going to do something with this...
@@ -173,7 +173,7 @@ class GameController: ObservableObject {
   // Format the time to display in the UI
   func formatTime() {
     // TODO: Need to pad with 0
-    seconds = "\(sec / 10).\(sec % 10)"
+    seconds = "\(sec)"
   }
 }
 
