@@ -11,7 +11,7 @@ import UIKit
 // Game Colors - We need both a color and a string for each
 enum GameColor {
   // These are the colors
-  case Red, Yellow, Orange, Green, Blue, Purple
+  case Red, Yellow, Orange, Green, Blue, Purple, Black, Gray, Brown, Pink
   
   // This method returns the color
   // Might have been good to use the built in UI colors
@@ -29,6 +29,14 @@ enum GameColor {
       return UIColor(red: 0 / 255, green: 114 / 255, blue: 188 / 255, alpha: 1)
     case .Purple:
       return UIColor(red: 146 / 255, green: 39 / 255, blue: 143 / 255, alpha: 1)
+    case .Black:
+      return UIColor(red: 10 / 255, green: 10 / 255, blue: 10 / 255, alpha: 1)
+    case .Gray:
+      return UIColor(red: 220 / 255, green: 220 / 255, blue: 220 / 255, alpha: 1)
+    case .Brown:
+      return UIColor(red: 150 / 255, green: 75 / 255, blue: 0 / 255, alpha: 1)
+    case .Pink:
+      return UIColor(red: 255 / 255, green: 192 / 255, blue: 203 / 255, alpha: 1)
     }
   }
   
@@ -47,6 +55,14 @@ enum GameColor {
       return "Blue"
     case .Purple:
       return "Purple"
+    case .Black:
+      return "Black"
+    case .Gray:
+      return "Gray"
+    case .Brown:
+      return "Brown"
+    case .Pink:
+      return "Pink"
     }
   }
 }
