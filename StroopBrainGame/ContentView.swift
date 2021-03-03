@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @EnvironmentObject var env: GameController
+    @State var timeRemaining = 60
   
   var body: some View {
     
@@ -35,6 +36,8 @@ struct ContentView: View {
         
         // Button/s at the bottom
         buttonBlock()
+        
+        Spacer()
       }
     }
   }
@@ -45,6 +48,9 @@ struct ContentView: View {
   // Display the top row with score, timer, and streak
   
   func scoreDisplay() -> AnyView {
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    
     return AnyView(
       HStack {
         // Score
@@ -53,10 +59,15 @@ struct ContentView: View {
           .padding(5)
           .foregroundColor(.white)
         // Timer
-        Text("\(env.seconds)")
+        Text("\(self.timeRemaining) sec")
           .frame(maxWidth: .infinity)
           .padding(5)
           .foregroundColor(.white)
+            .onReceive(timer){time in
+                if self.timeRemaining > 0 {
+                    self.timeRemaining -= 1
+                }
+            }
         // Steak
         Text("Streak: \(env.streak)")
           .frame(maxWidth: .infinity)
@@ -96,7 +107,6 @@ struct ContentView: View {
   
   func resultsDisplay() -> AnyView {
     // if game is over show the results
-    // Now I remember why I have .over state and wins !!!!
     if env.gameState == .over {
       return AnyView(
         // if wins true show check otherwise x
@@ -126,6 +136,7 @@ struct ContentView: View {
       // Otherwise show the Start button
         return AnyView(HStack(alignment: .bottom, spacing: UIScreen.screenHeight/2) {
         ButtonDisplay(str: "Start")
+            startGame()
       })
     }
     

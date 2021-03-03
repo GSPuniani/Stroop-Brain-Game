@@ -54,7 +54,7 @@ class GameController: ObservableObject {
   @Published var wins: Bool = false            // ??? I was going to do something with this...
   @Published var gameState: GameState = .start // Keeps track of the game state, needs work
   
-  var ms: Int = 0 // TODO: keep track of time
+  var sec: Int = 0 // TODO: keep track of time
   
   var timer: Timer? // TODO: Get the timer working
   
@@ -111,12 +111,12 @@ class GameController: ObservableObject {
     if (topColor == bottomColor && answer == "Yes") || (topColor != bottomColor && answer == "No") {
       // Got it right
       wins = true   // Still not using this...
-      score += 100  // Add some points
+      score += 10  // Add some points
       streak += 1   // Up the streak
     } else {
       // Got it wrong
       wins = false
-      score -= 100  // lose some points
+      score -= 10  // lose some points
       streak = 0    // reset that streak
     }
     // Select some new colors
@@ -145,11 +145,11 @@ class GameController: ObservableObject {
   
   // Starts a timer
   func startTimer() {
-    // This starts a timer updating in 1/10 secs this might need to be 1/100s
-    timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (timer) in
+    // This starts a timer updating in 1 sec
+    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
       self.updateTimer()
     })
-    ms = 0 // reset the ms count
+    sec = 60 // reset the sec count
     // Might need to drop the timer and use a frame loop. Use delta time to calculate the time
   }
   
@@ -166,14 +166,14 @@ class GameController: ObservableObject {
 
   // Handles updates to the timer
   func updateTimer() {
-    ms += 1 // add a ms and format the time
+    sec -= 1 // add a sec and format the time
     formatTime()
   }
   
   // Format the time to display in the UI
   func formatTime() {
     // TODO: Need to pad with 0
-    seconds = "\(ms / 10).\(ms % 10)"
+    seconds = "\(sec / 10).\(sec % 10)"
   }
 }
 
