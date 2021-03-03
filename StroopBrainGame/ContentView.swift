@@ -99,7 +99,7 @@ struct ContentView: View {
   
   func resultsDisplay() -> AnyView {
     // if game is over show the results
-    if env.gameState == .over {
+    if env.showResults {
       return AnyView(
         // if wins true show check otherwise x
         Text(env.wins ? "✓" : "✖️")

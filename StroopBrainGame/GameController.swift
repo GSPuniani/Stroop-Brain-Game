@@ -53,6 +53,7 @@ class GameController: ObservableObject {
   @Published var streak: Int = 0               // Streak count
   @Published var wins: Bool = false            // ??? I was going to do something with this...
   @Published var gameState: GameState = .start // Keeps track of the game state, needs work
+  @Published var showResults: Bool = false
   
   var sec: Int = 0 // TODO: keep track of time
   
@@ -80,6 +81,8 @@ class GameController: ObservableObject {
     // Playing - the timer should be running here
     case .playing:
       checkAnswer(answer: label)
+      
+      chooseColors()
     
     // Game Over - Maybe we don't need this, can set the state to .start and show
     // the start button again?
@@ -98,9 +101,9 @@ class GameController: ObservableObject {
   
   
   func gameOver() {
-    gameState = .over
+    gameState = .start
     stopTimer()
-//    startGameOverTimer()
+//    startQuestionOverTimer()
   }
   
   
@@ -119,9 +122,24 @@ class GameController: ObservableObject {
       score -= 10  // lose some points
       streak = 0    // reset that streak
     }
+    showResults = true
+    removeResults()
+    
     // Select some new colors
     // TODO: go to the ready state, start a count down or delay before showing the next colors
+// after checking answer:
+//    show results
+//    start remove results timer
+//    invalidate previous remove results timer
     
+  }
+  var showResultsTimer = Timer()
+  
+  func removeResults() {
+    showResultsTimer.invalidate()
+    showResultsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
+      self.showResults = false
+    })
   }
   
   // Set the color variables to star a game
@@ -151,7 +169,7 @@ class GameController: ObservableObject {
     // Might need to drop the timer and use a frame loop. Use delta time to calculate the time
   }
   
-//  func startGameOverTimer() {
+//  func startQuestionOverTimer() {
 //    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
 //      self.startGame()
 //    })
