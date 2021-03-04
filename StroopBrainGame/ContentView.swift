@@ -25,6 +25,10 @@ struct ContentView: View {
         
         Spacer() // -------
         
+        prompt()
+        
+        Spacer() // -------
+        
         // Center color labels
         ZStack {
           colorDisplay()
@@ -69,6 +73,16 @@ struct ContentView: View {
     )
   }
   
+  // --------------------------------------
+  
+  //    Display the game instructions
+      func prompt() -> AnyView {
+        return AnyView(Text("Does the word from the top card match the color of the word on the bottom?")
+                        .font(.system(size: 22, weight: .bold, design: .default))
+                        .foregroundColor(Color(white: 0.88, opacity: 1.0))
+                        .multilineTextAlignment(.center)
+        )
+      }
   
   
   // --------------------------------------
@@ -83,14 +97,20 @@ struct ContentView: View {
           .foregroundColor(Color(white: 0.78, opacity: 1.0))
       )
     }
+  
+    
+    
     // Display the Color Labels
     return AnyView(VStack {
-      // Top label colorA, color ColorA
+      
       TextDisplay(str: env.topColor.toString(), color: Color(env.topColor.toUIColor()))
-      // Bottom label colorB, color * colorC *
+      
       TextDisplay(str: env.bottomText.toString(), color: Color(env.bottomColor.toUIColor()))
     })
   }
+  
+  
+  
   
   
   
