@@ -32,7 +32,7 @@ enum GameColor {
     case .Black:
       return UIColor(red: 10 / 255, green: 10 / 255, blue: 10 / 255, alpha: 1)
     case .Gray:
-      return UIColor(red: 220 / 255, green: 220 / 255, blue: 220 / 255, alpha: 1)
+      return UIColor(red: 110 / 255, green: 110 / 255, blue: 110 / 255, alpha: 1)
     case .Brown:
       return UIColor(red: 150 / 255, green: 75 / 255, blue: 0 / 255, alpha: 1)
     case .Pink:

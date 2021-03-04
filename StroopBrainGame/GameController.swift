@@ -7,40 +7,6 @@
 
 import Foundation
 
-/*
- 
-1. Display Start button - GameState.start
-     Tap start button -> GameState.ready
-       Start Timer
-       Choose random colors
-       set GameState.playing
-
-2. Shows the color labels and Yes No buttons - GameState.playing
-     tap Yes or No
-       check answer
-         stop timer
-         update score
-         update streak
-         update wins
-         set GameState.over
- 
-3. Show the results - GameState.over
-     start a timer
-       On Timer
-       set GameState.playing
- 
- 
- TODO: The center block shifts down when the buttons are removed. Might use a Spacer here
- TODO: Time might be better as 00:0 or 00:00 this means the timer needs to run 0.01
- TODO: Buttons are only active when you tap the text, make the tapable area larger
- TODO: Need a way to exit game. Add another button? Add a play again button?
- TODO: The colors are sometimes hard to read for example yellow
- TODO: The frequancy of a Yes answer might need some consideration. Currently the
-    colors are randomly chosen. This means that match is about 1 in 6. Might be
-    more challenging if matches were more like 1 in 2.
- 
- */
-
 
 // Game Controller
 class GameController: ObservableObject {
@@ -48,16 +14,16 @@ class GameController: ObservableObject {
   @Published var topColor: GameColor = .Blue    // Color of the top text and text label
   @Published var bottomText: GameColor = .Green   // Text label on the bottom label
   @Published var bottomColor: GameColor = .Red     // Color of the bottom label
-  @Published var seconds: String = "60"     // TODO: update and format the time
+  @Published var seconds: String = "60"     // Format the time as a string in the display
   @Published var score: Int = 0              // score
   @Published var streak: Int = 0               // Streak count
-  @Published var wins: Bool = false            // ??? I was going to do something with this...
+  @Published var wins: Bool = false            // Not used
   @Published var gameState: GameState = .start // Keeps track of the game state, needs work
   @Published var showResults: Bool = false
   
-  var sec: Int = 0 // TODO: keep track of time
+  var sec: Int = 0 // Keep track of time
   
-  var timer: Timer? // TODO: Get the timer working
+  var timer: Timer? // Use instance of Timer for timer
   
   init() {
     
@@ -65,7 +31,6 @@ class GameController: ObservableObject {
   
   // Handles taps on buttons
   // Use the button label to decide what to do
-  // TODO: Needs some work...
   func buttonTapped(label: String) {
     switch gameState {
     // Start Button
@@ -84,10 +49,11 @@ class GameController: ObservableObject {
       
       chooseColors()
     
-    // Game Over - Maybe we don't need this, can set the state to .start and show
-    // the start button again?
+    // Game Over - show the start screen again with the score and streak reset
     case .over:
       gameState = .start
+      score = 0
+      streak = 0
     }
   }
   
@@ -103,7 +69,6 @@ class GameController: ObservableObject {
   func gameOver() {
     gameState = .start
     stopTimer()
-//    startQuestionOverTimer()
   }
   
   
@@ -124,9 +89,6 @@ class GameController: ObservableObject {
     }
     showResults = true
     removeResults()
-    
-    // Select some new colors
-    // TODO: go to the ready state, start a count down or delay before showing the next colors
 // after checking answer:
 //    show results
 //    start remove results timer
@@ -148,7 +110,7 @@ class GameController: ObservableObject {
     topColor = randomColor()
     bottomText = randomColor()
     bottomColor = randomColor()
-    // The frequency of colors that match will 1 in 6. We might want this to me more like 1 / 2?
+    // The frequency of colors that match will 1 in 10. We might want this to me more like 1 / 2?
   }
   
   // Returns a random GameColor
@@ -166,14 +128,8 @@ class GameController: ObservableObject {
       self.updateTimer()
     })
     sec = 60 // reset the sec count
-    // Might need to drop the timer and use a frame loop. Use delta time to calculate the time
   }
   
-//  func startQuestionOverTimer() {
-//    timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (timer) in
-//      self.startGame()
-//    })
-//  }
   
   // Clears the time
   func stopTimer() {

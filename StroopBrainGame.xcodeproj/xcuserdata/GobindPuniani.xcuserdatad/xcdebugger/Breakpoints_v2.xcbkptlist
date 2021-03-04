@@ -14,8 +14,8 @@
             filePath = "StroopBrainGame/GameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "buttonTapped(label:)"
             landmarkType = "7">
          </BreakpointContent>
