@@ -17,7 +17,7 @@ class GameController: ObservableObject {
   @Published var seconds: String = "60"     // Format the time as a string in the display
   @Published var score: Int = 0              // score
   @Published var streak: Int = 0               // Streak count
-  @Published var wins: Bool = false            // Not used
+  @Published var wins: Bool = false            // Determine whether to show check mark or x
   @Published var gameState: GameState = .start // Keeps track of the game state, needs work
   @Published var showResults: Bool = false
   
@@ -51,9 +51,9 @@ class GameController: ObservableObject {
     
     // Game Over - show the start screen again with the score and streak reset
     case .over:
-      gameState = .start
       score = 0
       streak = 0
+      gameState = .start
     }
   }
   
@@ -78,12 +78,12 @@ class GameController: ObservableObject {
     // If they don't your answer should be no
     if (topColor == bottomColor && answer == "Yes") || (topColor != bottomColor && answer == "No") {
       // Got it right
-      wins = true   // Still not using this...
+      wins = true   // Display check mark
       score += 10  // Add some points
       streak += 1   // Up the streak
     } else {
       // Got it wrong
-      wins = false
+      wins = false // Display X mark
       score -= 10  // lose some points
       streak = 0    // reset that streak
     }
