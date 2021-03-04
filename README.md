@@ -18,8 +18,8 @@ In order to run this game, you must clone this repository and open the project i
 
 Here are some screenshots of the game:
 
-![Start Screen](Assets/Start\ Screen.png "Start Screen")
+![Start Screen](https://github.com/GSPuniani/Stroop-Brain-Game/blob/main/Assets/Start%20Screen.png?raw=true "Start Screen")
 
-![Correct Answer](Assets/Correct\ Answer.png "Correct Answer")
+![Correct Answer](https://github.com/GSPuniani/Stroop-Brain-Game/blob/main/Assets/Correct%20Answer.png?raw=true "Correct Answer")
 
-![Incorrect Answer](Assets/Incorrect\ Answer.png "Incorrect Answer")
+![Incorrect Answer](https://github.com/GSPuniani/Stroop-Brain-Game/blob/main/Assets/Incorrect%20Answer.png?raw=true "Incorrect Answer")
